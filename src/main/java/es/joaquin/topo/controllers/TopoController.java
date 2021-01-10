@@ -20,9 +20,9 @@ public class TopoController {
 
 	@GetMapping("/api/topographicdetails/{id}")
 	public Flux<TopoResponse> getTopographies(@PathVariable String id) throws InterruptedException {
-		Random rand = new Random();
-		int n = rand.nextInt(2000) + 1000;
-		TimeUnit.MILLISECONDS.sleep(n);
+		
+		TimeUnit.MILLISECONDS.sleep(new Random().nextInt(2000) + 1000);
+		
 		return topoService.getTopographies(id).map(topo -> TopoResponse.builder()
 			.id(topo.getId())
 			.landscape(topo.getLandscape())
