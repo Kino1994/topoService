@@ -1,5 +1,8 @@
 package es.joaquin.topo.controllers;
 
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +19,10 @@ public class TopoController {
 	private TopoService topoService;
 
 	@GetMapping("/api/topographicdetails/{id}")
-	public Flux<TopoResponse> getTopographies(@PathVariable String id) {
+	public Flux<TopoResponse> getTopographies(@PathVariable String id) throws InterruptedException {
+		Random rand = new Random();
+		int n = rand.nextInt(2000) + 1000;
+		TimeUnit.MILLISECONDS.sleep(n);
 		return topoService.getTopographies(id).map(topo -> TopoResponse.builder()
 			.id(topo.getId())
 			.landscape(topo.getLandscape())
