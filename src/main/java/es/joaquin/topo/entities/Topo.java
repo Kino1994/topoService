@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
@@ -19,18 +18,6 @@ public class Topo {
 	@Id
 	private String id;
 	
-	private Landscape landscape;
+	private String landscape;
 	
-	@AllArgsConstructor
-	@Getter
-	public enum Landscape {
-		
-		FLAT("FLAT"),
-		
-		MOUNTAIN("MOUNTAIN");
-		
-		private String value;
-				
-	};	
-
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.joaquin.topo.entities.Topo;
+import es.joaquin.topo.model.api.Landscape;
 import es.joaquin.topo.repository.TopoRepository;
 import reactor.core.publisher.Flux;
 
@@ -21,11 +22,12 @@ public class TopoService {
 	private void initTopographies() {
 		topoRepository.deleteAll().block();
 		Flux<Topo> topos = Flux.just(
-			new Topo("Madrid", Topo.Landscape.FLAT),
-			new Topo("Barcelona", Topo.Landscape.FLAT),
-	        new Topo("Oviedo", Topo.Landscape.MOUNTAIN),
-			new Topo("Soria", Topo.Landscape.MOUNTAIN),
-			new Topo("Covadonga", Topo.Landscape.MOUNTAIN));
+			new Topo("Madrid", Landscape.FLAT.getValue()),
+			new Topo("Barcelona", Landscape.FLAT.getValue()),
+	        new Topo("Oviedo", Landscape.MOUNTAIN.getValue()),
+			new Topo("Soria", Landscape.MOUNTAIN.getValue()),
+			new Topo("Covadonga", Landscape.MOUNTAIN.getValue())
+		);
 
 		topos.flatMap(this.topoRepository::save)
 	    	.blockLast();
