@@ -15,7 +15,7 @@ Building the API requires:
 To run the API
 
 ```shell
-sudo docker run --rm -p 27017:27017 -d mongo:4.4-bionic
+docker run --rm -p 27017:27017 -d mongo:4.4-bionic
 mvn compile
 mvn spring-boot:run
 ```
